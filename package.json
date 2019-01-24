@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "hyperapp": "^1.2.9",
-    "page": "^1.11.3",
-    "single-spa": "^4.0.1"
+    "single-spa": "^4.0.1",
+    "single-spa-hyperapp": "^0.1.0"
   }
 }

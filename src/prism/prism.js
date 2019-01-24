@@ -1,24 +1,66 @@
+import { h, app } from 'hyperapp'
 import page from 'page'
+import singleSpaHyperapp from 'single-spa-hyperapp'
 
-let domEl
+const state = {}
+
+const actions = {}
+
+function Link(props, children) {
+  return h(
+    'a',
+    {
+      href: props.to,
+      onclick: function noRefresh(evt) {
+        evt.preventDefault()
+        window.history.pushState({}, '', props.to)
+      }
+    },
+    children
+  )
+}
+
+function view(state, actions) {
+  return h('div', {}, [
+    h('h1', {}, ['Prism']),
+    h('div', {}, [
+      Link({ to: '/library/something' }, 'Go to library'),
+      Link({ to: '/' }, 'Go home')
+    ])
+  ])
+}
+
+const lifecycles = singleSpaHyperapp({
+  hyperApp: app,
+  appState: state,
+  appActions: actions,
+  appView: view,
+  mountEl: domElementGetter()
+})
 
 export function bootstrap(props) {
-  return Promise.resolve().then(() => {
-    domEl = document.createElement('div')
-    domEl.id = 'prism'
-    document.body.appendChild(domEl)
-  })
+  console.log('boot prism', props)
+  return lifecycles.bootstrap(props)
 }
 
 export function mount(props) {
-  return Promise.resolve().then(() => {
-    domEl.innerHTML =
-      '<h1>Prism is mounted</h1><a href="/library/something">Go to library</a><a href="/">Go home</a>'
-  })
+  console.log('mount prism', props)
+  return lifecycles.mount(props)
 }
 
 export function unmount(props) {
-  return Promise.resolve().then(() => {
-    domEl.textContent = ''
-  })
+  console.log('unmount prism', props)
+  return lifecycles.unmount(props)
+}
+
+function domElementGetter() {
+  let el = document.getElementById('prism')
+
+  if (!el) {
+    el = document.createElement('div')
+    el.id = 'prism'
+    document.body.appendChild(el)
+  }
+
+  return el
 }

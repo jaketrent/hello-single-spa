@@ -1,17 +1,9 @@
-import page from 'page'
 import * as singleSpa from 'single-spa'
-
-// const appName = 'prism'
-//
-// // eventually use systemjs -- client loader
-// const loadingFunction = _ => import('./prism/prism.js')
-// // prism is on every page
-// const activityFunction = location => true // location.pathname.startsWith('/prism')
 
 const prism = {
   name: 'prism',
   load: _ => import('./prism/prism.js'),
-  isActive: location => /\/.*/.test(location.pathname)
+  isActive: location => true
 }
 
 const library = {
@@ -29,5 +21,3 @@ apps.forEach(app => {
 })
 
 singleSpa.start()
-
-page.start()
