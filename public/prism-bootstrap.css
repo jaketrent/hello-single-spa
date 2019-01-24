@@ -1,0 +1,38 @@
+:root {
+  --prismTopbarHeight: 62px;
+  --prismSidebarWidth: 60px;
+  --prismSidebarWidthExpanded: 220px;
+  --prismMaxWidth: 1600px;
+  --prismMinWidth: 1024px;
+}
+
+#ps-app {
+  position: relative;
+  max-width: var(--prismMaxWidth);
+  min-width: var(--prismMinWidth);
+  height: 100%;
+}
+#ps-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100vh - var(--prismTopbarHeight));
+  width: 100%;
+  margin-top: var(--prismTopbarHeight);
+  margin-left: var(--prismSidebarWidth);
+}
+@media (min-width: 630px) {
+  #ps-main {
+    width: calc(100% - var(--prismSidebarWidth));
+    margin-left: 60px;
+  }
+}
+@media (min-width: 1600px) {
+  #ps-app {
+    margin: 0 auto;
+  }
+  #ps-main {
+    margin-left: var(--prismSidebarWidthExpanded);
+    width: calc(100% - var(--prismSidebarWidthExpanded));
+  }
+}

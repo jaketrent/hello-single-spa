@@ -1,5 +1,4 @@
 import { h, app } from 'hyperapp'
-import page from 'page'
 import singleSpaHyperapp from 'single-spa-hyperapp'
 
 const state = {}
@@ -22,11 +21,9 @@ function Link(props, children) {
 
 function view(state, actions) {
   return h('div', {}, [
-    h('h1', {}, ['Prism']),
-    h('div', {}, [
-      Link({ to: '/library/something' }, 'Go to library'),
-      Link({ to: '/' }, 'Go home')
-    ])
+    h('span', {}, ['Prism...']),
+    Link({ to: '/' }, 'Home'),
+    Link({ to: '/library/browse' }, 'Browse')
   ])
 }
 
@@ -54,11 +51,10 @@ export function unmount(props) {
 }
 
 function domElementGetter() {
-  let el = document.getElementById('prism')
-
+  let el = document.getElementById('ps-prism')
   if (!el) {
     el = document.createElement('div')
-    el.id = 'prism'
+    el.id = 'ps-prism'
     document.body.appendChild(el)
   }
 
