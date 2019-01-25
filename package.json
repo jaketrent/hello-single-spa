@@ -14,7 +14,11 @@
   },
   "dependencies": {
     "hyperapp": "^1.2.9",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.3.1",
     "single-spa": "^4.0.1",
-    "single-spa-hyperapp": "^0.1.0"
+    "single-spa-hyperapp": "^0.1.0",
+    "single-spa-react": "^2.9.0"
   }
 }

@@ -10,7 +10,7 @@ const library = {
   name: 'library',
   load: _ => import('./library/library.js'),
   isActive: location => {
-    return /\/library.*/.test(location.pathname)
+    return /\/library.*/.test(location.pathname) || location.pathname === '/'
   }
 }
 

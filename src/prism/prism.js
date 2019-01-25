@@ -1,4 +1,5 @@
 import { h, app } from 'hyperapp'
+import * as singleSpa from 'single-spa'
 import singleSpaHyperapp from 'single-spa-hyperapp'
 
 const state = {}
@@ -9,10 +10,9 @@ function Link(props, children) {
   return h(
     'a',
     {
-      href: props.to,
       onclick: function noRefresh(evt) {
-        evt.preventDefault()
-        window.history.pushState({}, '', props.to)
+        // TODO: this does not activate Routes in another app if it's already loaded
+        singleSpaNavigate(props.to)
       }
     },
     children
