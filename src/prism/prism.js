@@ -13,7 +13,8 @@ function Link(props, children) {
       onclick: function noRefresh(evt) {
         // TODO: this does not activate Routes in another app if it's already loaded
         singleSpaNavigate(props.to)
-      }
+      },
+      href: '#'
     },
     children
   )
@@ -23,7 +24,8 @@ function view(state, actions) {
   return h('div', {}, [
     h('span', {}, ['Prism...']),
     Link({ to: '/' }, 'Home'),
-    Link({ to: '/library/browse' }, 'Browse')
+    Link({ to: '/library/browse' }, 'Browse'),
+    Link({ to: '/skills/all' }, 'Skills')
   ])
 }
 

@@ -14,7 +14,15 @@ const library = {
   }
 }
 
-const apps = [prism, library]
+const skills = {
+  name: 'skills',
+  load: _ => System.import('//localhost:8080/skills.js'),
+  isActive: location => {
+    return /\/skills.*/.test(location.pathname)
+  }
+}
+
+const apps = [prism, library, skills]
 
 apps.forEach(app => {
   singleSpa.registerApplication(app.name, app.load, app.isActive)
